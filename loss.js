@@ -1,4 +1,4 @@
-/* global predictMovie */
+/* global predictMovie, brain, movies, table, getTotal */
 
 function predictMovies (network, movies) {
   function predict (movie) {
@@ -31,7 +31,8 @@ function assess (movie) {
 
 function getLoss (network) {
   const predicted = predictMovies(network, movies)
-  const grade = getTotal(predicted, assess)
+  const grades = predicted.map(assess)
+  const grade = getTotal(grades)
 
   return grade / movies.length
 }

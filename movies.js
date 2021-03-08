@@ -31,9 +31,8 @@ function add (a, b) {
 const totalYears = years.reduce(add)
 console.log('Total years:', totalYears)
 
-function getTotal (array, mapper) {
-  const mapped = array.map(mapper)
-  const total = mapped.reduce(add)
+function getTotal (array) {
+  const total = array.reduce(add)
 
   return total
 }
@@ -49,7 +48,8 @@ const averageYear = totalYears / movies.length
 console.log('Average year:', averageYear)
 
 function average (movies, mapper) {
-  const total = getTotal(movies, mapper)
+  const array = movies.map(mapper)
+  const total = getTotal(array)
 
   return total / movies.length
 }

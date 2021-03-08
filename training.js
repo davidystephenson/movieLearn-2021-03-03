@@ -1,4 +1,4 @@
-/* global table, predictMovies, brain, getLoss, setup, movies */
+/* global table, predictMovies, brain, getLoss, setup, movies, getAverage */
 
 function getError (movie) {
   return movie.error
@@ -7,8 +7,9 @@ function getError (movie) {
 function evaluate (network, movies) {
   const predictions = predictMovies(network, movies)
   table('Predictions', predictions)
+  const errors = predictions.map(getError)
 
-  const averageError = average(predictions, getError)
+  const averageError = getAverage(errors)
   console.log('Average error:', averageError)
 }
 evaluate(brain.network, movies)

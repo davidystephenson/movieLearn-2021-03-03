@@ -1,3 +1,4 @@
+// Table
 const movies = [
   { title: 'Mad Max: Fury Road', year: 2015, minutes: 120, target: 1, genre: 2 }, // good?
   { title: 'Inception', year: 2010, minutes: 135, target: 1, genre: 2 },
@@ -31,6 +32,7 @@ function add (a, b) {
 const totalYears = years.reduce(add)
 console.log('Total years:', totalYears)
 
+// MapReduce
 function getTotal (array) {
   const total = array.reduce(add)
 
@@ -39,19 +41,22 @@ function getTotal (array) {
 function getMinutes (movie) {
   return movie.minutes
 }
-const totalMinutes = getTotal(movies, getMinutes)
+const minutes = movies.map(getMinutes)
+const totalMinutes = getTotal(minutes)
 console.log('Total minutes:', totalMinutes)
 
 console.log('Training size:', movies.length)
 
-const averageYear = totalYears / movies.length
-console.log('Average year:', averageYear)
+// Average
 
-function average (movies, mapper) {
-  const array = movies.map(mapper)
+const averageMinutes = totalMinutes / minutes.length
+console.log('Average minutes:', averageMinutes)
+
+function getAverage (array) {
   const total = getTotal(array)
+  const average = total / array.length
 
-  return total / movies.length
+  return average
 }
-const averageMinutes = average(movies, getMinutes)
-console.log('Average Minutes:', averageMinutes)
+const averageYears = getAverage(years)
+console.log('Average Years:', averageYears)
